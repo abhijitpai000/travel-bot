@@ -1,15 +1,14 @@
 """
-Module to pre-process the training data.
+Module to pre-process datasets for training.
+
+Functions:
+- preprocess_data: Generates appropriate data required for training from raw file.
+    - tokenize_input: Tokenize input text.
 """
 
 import json
 from pathlib import Path
-
-
-# from nltk.tokenize import word_tokenize
-#
-# # Local Imports.
-# from .utils import word_to_index, make_bow_vector
+from nltk.tokenize import word_tokenize
 
 
 def tokenize_input(input_seq):
@@ -22,25 +21,43 @@ def tokenize_input(input_seq):
 
     Returns
     -------
-        #todo: add return.
+        input_tokens (list)
     """
-    pass
+    return [word.lower() for word in word_tokenize(input_seq)]
 
 
-def preprocess_data():
+def preprocess_data(file_name):
     """
-    Pre-process training data.
+    Pre-process training datasets.
+
+    Parameters
+    ----------
+        file_name (str): Ex: "data.json" file name for pre-processing.
 
     Returns
     -------
-        #todo: add return
+        training_data (dict), vocab (list), intents (list)
     """
-    training_file_path = Path.cwd() / "data/training_data.json"
 
-    with open(training_file_path) as f:
-        training_data = json.load(f)
-    return
+    # Reading .json file for pre-processing.
+    data_file_path = Path.cwd() / f"datasets/{file_name}"
+    with open(data_file_path) as f:
+        data = json.load(f)
 
+    # Segregating data for training.
+    intents = []
+    vocab = []
+    training_data = {}
 
-if __name__ == '__main__':
-    preprocess_data()
+    for i in data["intents"]:
+        tag = i["intent"]
+        intents.append(tag)
+        for j in i["query"]:
+            tokens = tokenize_input(j)
+            vocab.extend(tokens)
+        training_data[tag] = vocab
+
+    # Removing duplicates from vocab.
+    vocab = [word for word in vocab if word not in vocab]
+
+    return training_data, vocab, intents
