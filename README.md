@@ -8,5 +8,6 @@ Travel bot is an NLP-based bot that tries to understand and give appropriate res
 ## Architecture
 ![This is an image](https://github.com/abhijitpai000/travel-bot/blob/main/travel-bot-arch.png)
 
+
 ## Tech Stack
-![tech-stack](https://github.com/abhijitpai000/travel-bot/blob/main/demo_app/tech-stack.png)
+<img src="https://github.com/abhijitpai000/travel-bot/blob/main/demo_app/tech-stack.png" style="height:100px"></img>
