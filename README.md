@@ -6,4 +6,4 @@ Travel bot is an NLP-based bot that tries to understand and give appropriate res
 ![Demo](https://github.com/abhijitpai000/travel-bot/blob/main/travel-bot-demo.gif)
 
 ## Architecture
-![This is an image](/https://github.com/abhijitpai000/travel-bot/blob/main/travel-bot-arch.png)
+![This is an image](https://github.com/abhijitpai000/travel-bot/blob/main/travel-bot-arch.png)
